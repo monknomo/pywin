@@ -40,7 +40,7 @@ IF "%1"=="" (
 	goto End
 )
 
-FOR /F "tokens=1,2,3 delims=," %%a in ('type "%PYWINENV_HOME%\lib\pythonversions.txt"') do (
+FOR /F "tokens=1,2,3 delims=," %%a in ('type "%PYWIN_HOME%\lib\pythonversions.txt"') do (
 	IF "%%a"=="%1" (
 		SET $PYTHONDLVERSION=%%c
 		SET $PYTHONDLURL=%%b
@@ -55,12 +55,12 @@ goto End
 
 :InstallPython
 echo Downloading Python version %1 from %$PYTHONDLURL%
-"%PYWINENV_HOME%\lib\wget.exe" --no-check-certificate --continue --tries=5 --output-document="%PYWINENV_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" "%$PYTHONDLURL%" 
+"%PYWIN_HOME%\lib\wget.exe" --no-check-certificate --continue --tries=5 --output-document="%PYWIN_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" "%$PYTHONDLURL%" 
 rem the /a flag on msiexec is supposed to unzip the python installer as though it were an administrative network install.  It doesn't modify the system in any way
 rem this might be troublesome, in that python requires some dlls...
-msiexec /a "%PYWINENV_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" TARGETDIR="%PYWINENV_HOME%\versions\%$PYTHONDLVERSION%" /qb!
-IF NOT EXISTS "%PYWINENV_HOME%\lib\currentVersion.txt" (
-	echo %1 > "%PYWINENV_HOME%\lib\currentVersion.txt"
+msiexec  "%PYWIN_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" TARGETDIR="%PYWIN_HOME%\versions\%$PYTHONDLVERSION%" /qb!
+IF NOT EXISTS "%PYWIN_HOME%\lib\currentVersion.txt" (
+	echo %1 > "%PYWIN_HOME%\lib\currentVersion.txt"
 )
 
 goto End
@@ -76,10 +76,10 @@ IF "%1"=="" (
 	echo Use --versions to list available Python versions
 	goto End
 )
-cd "%PYWINENV_HOME%\lib"
-FOR /F %%G in ('dir /A:D /B %PYWINENV_HOME%\versions\*') do (
+cd "%PYWIN_HOME%\lib"
+FOR /F %%G in ('dir /A:D /B %PYWIN_HOME%\versions\*') do (
 	IF "%1"=="%%G" (
-		echo %1 > "%PYWINENV_HOME%\lib\currentVersion.txt"
+		echo %1 > "%PYWIN_HOME%\lib\currentVersion.txt"
 		goto End
 	)
 )
@@ -99,7 +99,7 @@ goto End
 goto End
 
 :Installed
-FOR /F %%G in ('dir /A:D /B %PYWINENV_HOME%\versions\*') do (
+FOR /F %%G in ('dir /A:D /B %PYWIN_HOME%\versions\*') do (
 	echo %%G
 )
 goto End

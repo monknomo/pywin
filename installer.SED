@@ -22,7 +22,7 @@ UserQuietInstCmd=%UserQuietInstCmd%
 SourceFiles=SourceFiles
 [Strings]
 InstallPrompt=
-DisplayLicense=
+DisplayLicense=C:\Users\monknomo\Documents\GitHub\pywin\LICENSE.txt
 FinishMessage=
 TargetName=C:\Users\monknomo\Documents\GitHub\pywin\installer.EXE
 FriendlyName=pywin
@@ -31,7 +31,7 @@ PostInstallCmd=<None>
 AdminQuietInstCmd=
 UserQuietInstCmd=
 FILE0="install.bat"
-FILE1="pywinenv.bat"
+FILE1="pywin.bat"
 FILE2="pythonversions.txt"
 FILE3="wget.exe"
 FILE4="wget_LICENSE.txt"
