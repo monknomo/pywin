@@ -1,16 +1,23 @@
 @@echo off
 
+SETLOCAL 
 SHIFT
+goto Halp
 IF "%1"=="" (
 	echo Please provide a Python version
 	echo Use --versions to list available Python versions
 	goto End
+) ELSE ( 
+	IF "%1"=="--help" (
+		goto Halp
+	)
 )
 
 FOR /F "tokens=1,2,3 delims=," %%a in ('type "%PYWIN_HOME%\lib\pythonversions.txt"') do (
 	IF "%%a"=="%1" (
-		SETLOCAL $PYTHONDLVERSION=%%c
-		SETLOCAL $PYTHONDLURL=%%b
+		
+		SET $PYTHONDLVERSION=%%c
+		SET $PYTHONDLURL=%%b
 		rem this is in lieu of a good way to break loops in batch files
 		goto InstallPython
 	)	
@@ -29,6 +36,13 @@ msiexec  "%PYWIN_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" TARGETDIR="%
 IF NOT EXISTS "%PYWIN_HOME%\lib\currentVersion.txt" (
 	echo %1 > "%PYWIN_HOME%\lib\currentVersion.txt"
 )
+GOTO End
 
+:Halp
+echo --install ^<version^> 
+echo     Installs that version of Python
 goto End
+
+
 :End
+ENDLOCAL

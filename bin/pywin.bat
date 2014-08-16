@@ -1,4 +1,4 @@
-@@echo off
+rem @@echo off
 
 IF "%1"=="" (
 	goto EmptyCommand
@@ -25,20 +25,18 @@ FOR %%f IN (%PYWIN_HOME%\lib\commands\*.bat) DO (
 goto BadCommand
 
 :Help
-echo --versions 
-echo     Displays a list of Python versions available for install
-echo --installed 
-echo     Displays a list of installed Pythons
-echo --current 
-echo     Displays the current Python in use
-echo install <version> 
-echo     Installs that version of Python
-echo use <version>
-echo     Switches to the specificed Python version, if it is installed
+echo --commands
+echo     Displays a list of commands
+FOR %%f IN (%PYWIN_HOME%\lib\commands\*.bat) DO (
+		call %PYWIN_HOME%\lib\commands\%%~nxf null --help
+)
+echo --help
+echo     Displays this help dialog
+goto End
 
 :Commands
 for %%f in (%PYWIN_HOME%\lib\commands\*.bat) do (
-	echo %%~nf
+	echo --%%~nf
 )
 goto End
 

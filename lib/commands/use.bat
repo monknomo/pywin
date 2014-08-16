@@ -5,6 +5,10 @@ IF "%1"=="" (
 	echo Please provide a Python version
 	echo Use --versions to list available Python versions
 	goto End
+) ELSE (
+	IF "%1"=="--help" (
+		goto Help
+	)
 )
 cd "%PYWIN_HOME%\lib"
 FOR /F %%G in ('dir /A:D /B %PYWIN_HOME%\versions\*') do (
@@ -17,3 +21,9 @@ echo %1 is not an installed version
 echo Consider using the install command
 echo Try --help for a list of commands
 goto End  
+
+:Help
+echo --use ^<version^>
+echo     Switches to the specificed Python version, if it is installed
+
+:End
