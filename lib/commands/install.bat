@@ -31,6 +31,9 @@ echo Downloading Python version %1 from %$PYTHONDLURL%
 "%PYWIN_HOME%\lib\wget.exe" --no-check-certificate --continue --tries=5 --output-document="%PYWIN_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" "%$PYTHONDLURL%" 
 rem the /a flag on msiexec is supposed to unzip the python installer as though it were an administrative network install.  It doesn't modify the system in any way
 rem this might be troublesome, in that python requires some dlls...S
+if %PYWIN_DEBUG%==1 (
+	GOTO End
+)
 msiexec  "%PYWIN_HOME%\lib\downloads\python-%$PYTHONDLVERSION%.msi" TARGETDIR="%PYWIN_HOME%\versions\%$PYTHONDLVERSION%" /qb!
 IF NOT EXISTS "%PYWIN_HOME%\lib\currentVersion.txt" (
 	echo %1 > "%PYWIN_HOME%\lib\currentVersion.txt"
