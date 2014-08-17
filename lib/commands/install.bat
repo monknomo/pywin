@@ -2,22 +2,21 @@
 
 SETLOCAL 
 SHIFT
-goto Halp
 IF "%1"=="" (
 	echo Please provide a Python version
 	echo Use --versions to list available Python versions
 	goto End
 ) ELSE ( 
 	IF "%1"=="--help" (
-		goto Halp
+		goto Help
 	)
 )
 
 FOR /F "tokens=1,2,3 delims=," %%a in ('type "%PYWIN_HOME%\lib\pythonversions.txt"') do (
 	IF "%%a"=="%1" (
 		
-		SET $PYTHONDLVERSION=%%c
-		SET $PYTHONDLURL=%%b
+		SET %PYTHONDLVERSION%=%%c
+		SET %PYTHONDLURL%=%%b
 		rem this is in lieu of a good way to break loops in batch files
 		goto InstallPython
 	)	
@@ -38,7 +37,7 @@ IF NOT EXISTS "%PYWIN_HOME%\lib\currentVersion.txt" (
 )
 GOTO End
 
-:Halp
+:Help
 echo --install ^<version^> 
 echo     Installs that version of Python
 goto End
