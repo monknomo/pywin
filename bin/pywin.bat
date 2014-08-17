@@ -1,5 +1,5 @@
-rem @@echo off
-
+@@echo off
+SETLOCAL 
 IF "%1"=="" (
 	goto EmptyCommand
 ) ELSE (
@@ -14,11 +14,7 @@ IF "%1"=="" (
 
 FOR %%f IN (%PYWIN_HOME%\lib\commands\*.bat) DO (
 	IF "%1"=="--%%~nf" (
-		SETLOCAL 
-		set COMMAND=%1
-		SHIFT
-		call %PYWIN_HOME%\lib\commands\%COMMAND:~2% %*
-		ENDLOCAL
+		call %PYWIN_HOME%\lib\commands\%%~nf %*		
 		goto end
 	)
 )
@@ -51,3 +47,4 @@ echo Try --help for a list of commands
 goto End
 
 :End
+ENDLOCAL

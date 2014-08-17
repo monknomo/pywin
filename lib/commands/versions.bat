@@ -1,14 +1,19 @@
 @@echo off
 
+SETLOCAL
 SHIFT
 IF "%1"=="--help" (
 	goto Help
 )
 
-FOR /F "tokens=1,2,3 delims=," %%a in (..\lib\pythonversions.txt) do (
+FOR /F "tokens=1,2,3 delims=," %%a in (%PYWIN_HOME%\lib\pythonversions.txt) do (
 	echo %%a	
 )
+goto End
 
 :Help
-echo --use ^<version^>
-echo     Switches to the specificed Python version, if it is installed
+echo --versions
+echo     Displays a list of Python versions available for install
+
+:End
+ENDLOCAL
