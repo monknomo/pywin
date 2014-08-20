@@ -37,3 +37,4 @@ Icon
 
 installer.EXE
 lib/currentVersion.txt
+bin/test/results.txt
