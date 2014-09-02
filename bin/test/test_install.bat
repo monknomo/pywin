@@ -2,4 +2,3 @@ FOR /F "tokens=1,2,3 delims=," %%a in ('type "%PYWIN_HOME%\lib\pythonversions.tx
 	echo attempting to install %%a
 	call %PYWIN_HOME%\lib\commands\install --install %%a	
 )
-pause
