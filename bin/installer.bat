@@ -22,8 +22,9 @@ move /Y current.bat %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\py
 move /Y install.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y uninstall.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y use.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-move /Y versionse.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-rem set envir
-setx PYWIN_HOME %ALLUSERSPROFILE%\pywin >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+move /Y versions.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+rem set environment
+setx PYWIN_HOME "%ALLUSERSPROFILE%\pywin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 SET PYWIN_HOME="%ALLUSERSPROFILE%\pywin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-setx PATH "%PATH%;%PYWIN_HOME%\bin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+setx PATH "%PATH%;%ALLUSERSPROFILE%\pywin\bin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+pause
