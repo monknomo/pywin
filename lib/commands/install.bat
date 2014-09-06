@@ -1,4 +1,4 @@
-rem @@echo off
+@@echo off
 
 SETLOCAL 
 SHIFT
@@ -48,7 +48,7 @@ goto End
 
 
 :End
-if %PYWIN_DEBUG%==1 (
+IF "%PYWIN_DEBUG%"=="1"  (
 	echo done with trying to install
 )
 ENDLOCAL
