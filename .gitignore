@@ -35,7 +35,6 @@ Icon
 .Spotlight-V100
 .Trashes
 
-installer.EXE
 lib/currentVersion.txt
 bin/test/results.txt
-pywin_0.1.EXE
+pywin*.EXE
