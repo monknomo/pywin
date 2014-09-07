@@ -1,7 +1,7 @@
 Installing PyWin
 =====================
 
-To install PyWin, double click on the "pywin_0.5.EXE" and agree to the license.  PyWin will be installed to your computer.
+To install PyWin, download the latest release, double click on the installer and agree to the license.  PyWin will be installed to your computer.  The default installation is to %ALLUSERSPROFILE%\pywin.  %PYWIN_HOME% is created and the system %PATH% is modified.
 
 Using PyWin
 -------------
@@ -29,7 +29,7 @@ Unzip or clone pywin to your chosen directory.  The exe installer uses %ALLUSERS
 
 ### Set some environment variables
 
-You can configure the required environment variables by right clicking on "My Computer" or "Computer" from the start menu, or on the desktop and selecting “properties”  From the System menu, select "Advanced system settings"  From there, select “Environment Variables”  Create a new System variable called “PYWIN_HOME” and set it to whatever directory you have unzipped PyWin to (you should see bin, lib etc from this directory).
+Environment variables can be set in the GUI or through the command line.  The command line is the preferred method for manual PyWin installs, because it is easier to describe.
 
 Establish your %PYWIN_HOME% 
     
@@ -42,6 +42,10 @@ You must add %PYWIN_HOME%\bin to your system path.
 You must also add %PYWIN_HOME%\shims to your system path before any existing python installations
 
     setx PATH c:\pywin\shims;%PATH%
+	
+#### The GUI Way
+
+You can configure the required environment variables by right clicking on "My Computer" or "Computer" from the start menu, or on the desktop and selecting “properties”  From the System menu, select "Advanced system settings"  From there, select “Environment Variables.”  Create a new System variable called “PYWIN_HOME” and set it to whatever directory you have unzipped PyWin to (you should see bin, lib etc from this directory).  Add %PYWIN_HOME%\bin and %PYWIN_HOME%\shims to the system PATH.
 	
 After you have setup all the environment variables, start a new command line window.
 
@@ -74,5 +78,18 @@ goto End
 ```
 	
 Placing this example into the %PYWIN_HOME%\lib\commands directory will add an additional --example command to pywin.  It will echo "This is an example script" when "pywin --example" is called.  It will echo "--example provides an example to people who would extend pywin" when "pywin --help" or "pywin --example --help" are called.
+
+Uninstalling PyWin 
+--------------------
+
+As yet, there is not a one click PyWin installer.  Removing PyWin requires removing the %PYWIN_HOME% directory, removing the %PYWIN_HOME% environment variable and modifying the system PATH to remove references to PyWin.
+
+If PyWin has been installed to the default location, navigate to %ALLUSERSPROFILE% and delete the pywin directory.  
+
+Remove the %PYWIN_HOME% environment variable
+
+    setx PYWIN_HOME
+	
+Modify the PATH by right clicking on "My Computer" or "Computer" from the start menu, or on the desktop and selecting “properties.”  From the System menu, select "Advanced system settings."  From there, select “Environment Variables.”  Remove all references to pywin from the PATH variable.
 
 
