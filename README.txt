@@ -49,10 +49,6 @@ You can configure the required environment variables by right clicking on "My Co
 	
 After you have setup all the environment variables, start a new command line window.
 
-### Use
-
-From the command line type pywin --help to get a list of commands and their usage.
-
 Extending PyWin
 ---------------------
 
