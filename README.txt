@@ -10,13 +10,13 @@ From the command line type pywin --help to get a list of commands and their usag
 
 PyWin is extensible, but includes a basic list of commands to start with.
 
-"pywin --commands" displays a list of commands
-"pywin --current" displays the current version of Python in use
-"pywin --install <version>" installs the specified version of Python
-"pywin --installed" returns a list of installed versions of Python
-"pywin --uninstall <version>" uninstalls the specified version of Python, if it is installed
-"pywin --use" <version> switches to the specified version of Python, if it is installed
-"pywin --versions" displays a list of all currently supported Python versions to install
+* "pywin --commands" displays a list of commands
+* "pywin --current" displays the current version of Python in use
+* "pywin --install <version>" installs the specified version of Python
+* "pywin --installed" returns a list of installed versions of Python
+* "pywin --uninstall <version>" uninstalls the specified version of Python, if it is installed
+* "pywin --use" <version> switches to the specified version of Python, if it is installed
+* "pywin --versions" displays a list of all currently supported Python versions to install
 
 Manual Installation
 --------------------
@@ -57,20 +57,21 @@ PyWin can be extended by adding files that windows can execute (batch file, vbsc
 ### Simple PyWin Extension Example
 
 example.bat
+```batch
+@@echo off
+SHIFT
+IF "%1"=="--help" (
+	goto Help
+)
+echo This is an example script
+goto End
 
-    @@echo off
-	SHIFT
-	IF "%1"=="--help" (
-	    goto Help
-    )
-	echo This is an example script
-	goto End
-	
-	:Help
-	echo --example provides an example to people who would extend pywin
-	goto End
-	
-	:End
+:Help
+echo --example provides an example to people who would extend pywin
+goto End
+
+:End
+```
 	
 Placing this example into the %PYWIN_HOME%\lib\commands directory will add an additional --example command to pywin.  It will echo "This is an example script" when "pywin --example" is called.  It will echo "--example provides an example to people who would extend pywin" when "pywin --help" or "pywin --example --help" are called.
 
