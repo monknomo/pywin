@@ -24,7 +24,10 @@ move /Y uninstall.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%
 move /Y use.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y versions.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem set environment
+rem this sets up PYWIN_HOME for all future command line sessions
 setx PYWIN_HOME "%ALLUSERSPROFILE%\pywin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-SET PYWIN_HOME="%ALLUSERSPROFILE%\pywin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+rem this adds pywin itself to the path so you can do "pyin --command" type stuff
 setx PATH "%PATH%;%ALLUSERSPROFILE%\pywin\bin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+rem this adds the pywin shims to the path, which let you to "python blah.py" type stuff
+setx PATH "%ALLUSERSPROFILE%\pywin\shims;%PATH%" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 pause

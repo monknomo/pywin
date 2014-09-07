@@ -18,8 +18,7 @@ FOR /F %%G in ('dir /A:D /B %PYWIN_HOME%\versions\*') do (
 	)
 )
 echo %1 is not an installed version
-echo Consider using the install command
-echo Try --help for a list of commands
+echo use 'pywin --installed' to show installed versions
 goto End  
 
 :Help
