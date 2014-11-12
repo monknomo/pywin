@@ -18,7 +18,9 @@ IF NOT EXIST "%PYWIN_HOME%\lib\downloads\python-%1.msi" (
 )
 
 msiexec /x "%PYWIN_HOME%\lib\downloads\python-%1.msi" TARGETDIR="%PYWIN_HOME%\versions\%1" /qn
-del "%PYWIN_HOME%\lib\downloads\python-%1.msi"
+del /Q /F /S "%PYWIN_HOME%\versions\%1"
+rd /S /Q "%PYWIN_HOME%\versions\%1"
+del /Q /F "%PYWIN_HOME%\lib\downloads\python-%1.msi"
 goto End
 
 

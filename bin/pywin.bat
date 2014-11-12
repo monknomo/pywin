@@ -1,5 +1,5 @@
 @@echo off
-SETLOCAL 
+
 IF "%1"=="" (
 	goto EmptyCommand
 ) ELSE (
@@ -47,4 +47,3 @@ echo Try --help for a list of commands
 goto End
 
 :End
-ENDLOCAL

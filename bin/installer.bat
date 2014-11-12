@@ -6,6 +6,7 @@ mkdir %ALLUSERSPROFILE%\pywin\lib\downloads >> %ALLUSERSPROFILE%\pywin\install_l
 mkdir %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 mkdir %ALLUSERSPROFILE%\pywin\shims >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 mkdir %ALLUSERSPROFILE%\pywin\versions >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+mkdir %ALLUSERSPROFILE%\pywin\virtualEnvironments >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem copy files to new directory structure
 move /Y LICENSE.txt %ALLUSERSPROFILE%\pywin >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y README.txt %ALLUSERSPROFILE%\pywin >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
@@ -25,9 +26,12 @@ move /Y use.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin
 move /Y versions.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem set environment
 rem this sets up PYWIN_HOME for all future command line sessions
+echo setting PYWIN_HOME  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 setx PYWIN_HOME "%ALLUSERSPROFILE%\pywin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem this adds pywin itself to the path so you can do "pyin --command" type stuff
+echo adding pywin/bin to PATH  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 setx PATH "%PATH%;%ALLUSERSPROFILE%\pywin\bin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem this adds the pywin shims to the path, which let you to "python blah.py" type stuff
+echo adding pywin/shims to path  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 setx PATH "%ALLUSERSPROFILE%\pywin\shims;%PATH%" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 pause

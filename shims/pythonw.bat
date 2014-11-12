@@ -1,9 +1,7 @@
 @@echo off
 
-cd "%PYWIN_HOME%\lib"
-FOR /F  %%a in (currentVersion.txt) do (
+FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
 	SET $CURRENT_PY=%%a
 )
 
-cd "%PYWIN_HOME%\versions\%$CURRENT_PY%"
-pythonw.exe %*
+"%PYWIN_HOME%\versions\%$CURRENT_PY%\pythonw.exe" %*
