@@ -1,53 +1,36 @@
-@@ECHO off
+rem @@ECHO off
 
 SHIFT
 
-rem check for prereqs 
+rem check for prereqs
 
 FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
-	SET $CURRENT_PY=%%a
+SET $CURRENT_PY=%%a
 )
 
 
-	IF NOT EXIST "%PYWIN_HOME%\versions\%$CURRENT_PY%\Scripts\easy_install.exe" (
-		rem change download location
-		echo easy install not found, installing easy install
-		%PYWIN_HOME%\lib\wget --no-check-certificate -N --output-document="%PYWIN_HOME%\lib\downloads\get_ez_setup.py" https://bootstrap.pypa.io/ez_setup.py
-		"%PYWIN_HOME%\versions\%$CURRENT_PY%\python.exe" "%PYWIN_HOME%\lib\downloads\get_ez_setup.py"
-		echo easy install installed
-	)
-	IF NOT EXIST "%PYWIN_HOME%\versions\%$CURRENT_PY%\Scripts\pip.exe" (
-		echo pip not found, installing pip
-		%PYWIN_HOME%\lib\wget --no-check-certificate -N --output-document="%PYWIN_HOME%\lib\downloads\get-pip.py" https://bootstrap.pypa.io/get-pip.py
-		"%PYWIN_HOME%\versions\%$CURRENT_PY%\python.exe" "%PYWIN_HOME%\lib\downloads\get-pip.py"
-		echo pip installed
-	)
-	IF NOT EXIST "%PYWIN_HOME%\versions\%$CURRENT_PY%\Scripts\virtualenv.exe" (
-		echo virtualenv not installed, installing virtualenv
-		pip install virtualenv
-		echo virtualenv installed
-	)
-
-
 IF "%1"=="" (
-	ECHO Please provide a Python version
-	ECHO Use --versions to list available Python versions
+	ECHO Please provide an argument
+	ECHO Use --venv --help to see all options
 	GOTO End
 ) ELSE (
 	IF "%1"=="create" (
+		shift
 		GOTO createVenv
 	) ELSE (
 		IF "%1"=="activate" (
+			shift
 			GOTO activateVenv
 		) ELSE (
 			IF "%1"=="deactivate" (
+				shift
 				GOTO deactivateVenv
 			) ELSE (
 				IF "%1"=="list" (
 					GOTO listVenv
 				) ELSE (
 					IF "%1"=="--help" (
-						goto help
+					goto help
 					)
 				)
 			)
@@ -57,38 +40,66 @@ IF "%1"=="" (
 GOTO end
 rem pywin --venv create <name>
 :createVenv
-IF EXIST "%PYWIN_HOME%\virtualEnvironments\%2" (
-	ECHO %2 already exists
+setlocal
+set $venvName=%1
+shift
+call "%PYWIN_HOME%\lib\get-venv-prereqs.bat" 2 %*
+IF ERRORLEVEL 1 (
+	goto end
+)
+IF EXIST "%PYWIN_HOME%\virtualEnvironments\%$venvName%" (
+	ECHO %$venvName% already exists
 )
 
-virtualenv "%PYWIN_HOME%\virtualEnvironments\%2"
-
+virtualenv "%PYWIN_HOME%\virtualEnvironments\%$venvName%"
+endlocal
 
 GOTO end
 
 rem pywin --venv use <name>
 :activateVenv
-IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%2\Scripts\activate" (
+setlocal
+set $venvName=%1
+shift
+call "%PYWIN_HOME%\lib\get-venv-prereqs.bat" 2 %*
+IF ERRORLEVEL 1 (
+	goto end
+)
+IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%$venvName%\Scripts\activate" (
 	ECHO activate script doesn't exist
-	IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%2" (
-		ECHO %2 does not appear to be a virtual environment
+	IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%$venvName%" (
+		ECHO %$venvName% does not appear to be a virtual environment
 	)
 	ECHO use ^'pywin --venv create ^<name^>^' to make a virtual environment
 ) ELSE (
-	 call "%PYWIN_HOME%\virtualEnvironments\%2\Scripts\activate.bat"
+	endlocal
+	"%PYWIN_HOME%\virtualEnvironments\%$venvName%\Scripts\activate.bat"
+	goto End
 )
+endlocal
 GOTO end
 
 rem pywin --venv stop <name>
 :deactivateVenv
-IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%2\Scripts\deactivate.bat" (
-	IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%2" (
-		ECHO %2 does not appear to be a virtual environment
+setlocal
+set $venvName=%1
+shift
+call "%PYWIN_HOME%\lib\get-venv-prereqs.bat" 2 %*
+IF ERRORLEVEL 1 (
+	goto end
+)
+IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%$venvName%\Scripts\deactivate.bat" (
+	ECHO deactivate script doesn't exist
+	IF NOT EXIST "%PYWIN_HOME%\virtualEnvironments\%$venvName%" (
+		ECHO %$venvName% does not appear to be a virtual environment
 	)
 	ECHO use ^'pywin --venv create ^<name^>^' to make a virtual environment
 ) else (
-	call "%PYWIN_HOME%\virtualEnvironments\%2\Scripts\deactivate.bat"
+	endlocal
+	call "%PYWIN_HOME%\virtualEnvironments\%$venvName%\Scripts\deactivate.bat"
+	goto End
 )
+endlocal
 GOTO end
 
 :listVenv
