@@ -29,9 +29,7 @@ rem this sets up PYWIN_HOME for all future command line sessions
 echo setting PYWIN_HOME  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 setx PYWIN_HOME "%ALLUSERSPROFILE%\pywin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem this adds pywin itself to the path so you can do "pyin --command" type stuff
-echo adding pywin/bin to PATH  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-setx PATH "%PATH%;%ALLUSERSPROFILE%\pywin\bin" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem this adds the pywin shims to the path, which let you to "python blah.py" type stuff
-echo adding pywin/shims to path  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-setx PATH "%ALLUSERSPROFILE%\pywin\shims;%PATH%" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+echo adding pywin/shims and pywin/bin to path  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+setx PATH "%ALLUSERSPROFILE%\pywin\shims;%ALLUSERSPROFILE%\pywin\bin;%PATH%" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 pause
