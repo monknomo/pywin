@@ -24,6 +24,8 @@ move /Y install.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\p
 move /Y uninstall.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y use.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y versions.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+move /Y installed.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1 
+move /Y venv.bat %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 rem set environment
 rem this sets up PYWIN_HOME for all future command line sessions
 echo setting PYWIN_HOME  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
