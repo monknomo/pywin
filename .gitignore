@@ -38,3 +38,4 @@ Icon
 lib/currentVersion.txt
 bin/test/results.txt
 pywin*.EXE
+*.DDF

@@ -10,7 +10,6 @@ IF "%1"=="" (
 		goto Help
 	)
 )
-cd "%PYWIN_HOME%\lib"
 FOR /F %%G in ('dir /A:D /B %PYWIN_HOME%\versions\*') do (
 	IF "%1"=="%%G" (
 		echo %1 > "%PYWIN_HOME%\lib\currentVersion.txt"

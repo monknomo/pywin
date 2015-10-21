@@ -20,6 +20,7 @@ move /Y pip.bat %ALLUSERSPROFILE%\pywin\shims >> %ALLUSERSPROFILE%\pywin\install
 move /Y py.bat %ALLUSERSPROFILE%\pywin\shims >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y python.bat %ALLUSERSPROFILE%\pywin\shims >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y pythonw.bat %ALLUSERSPROFILE%\pywin\shims >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
+move /Y virtualenv.bat %ALLUSERSPROFILE%\pywin\shims >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y current.bat %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y install.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 move /Y uninstall.bat  %ALLUSERSPROFILE%\pywin\lib\commands >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
@@ -35,4 +36,4 @@ rem this adds pywin itself to the path so you can do "pyin --command" type stuff
 rem this adds the pywin shims to the path, which let you to "python blah.py" type stuff
 echo adding pywin/shims and pywin/bin to path  >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
 setx PATH "%ALLUSERSPROFILE%\pywin\shims;%ALLUSERSPROFILE%\pywin\bin;%PATH%" >> %ALLUSERSPROFILE%\pywin\install_log.txt  2>&1
-pause
+

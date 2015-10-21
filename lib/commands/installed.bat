@@ -2,12 +2,12 @@
 
 SHIFT
 
-IF NOT "%1"=="" (
-	echo unrecogized argument^(s^), try using the "--help" switch
-	goto End
+IF "%1"=="--help"  (
+    goto Help	
 ) ELSE (
-	IF "%1"=="--help" (
-		goto Help
+	IF NOT "%1"=="" (
+		echo unrecogized argument^(s^), try using the "--help" switch
+        goto End
 	) ELSE (
 		goto listInstalled
 	)

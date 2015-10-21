@@ -4,9 +4,7 @@ SHIFT
 
 rem check for prereqs
 
-FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
-SET $CURRENT_PY=%%a
-)
+
 
 
 IF "%1"=="" (
@@ -16,17 +14,29 @@ IF "%1"=="" (
 ) ELSE (
 	IF "%1"=="create" (
 		shift
+        FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
+            SET $CURRENT_PY=%%a
+        )
 		GOTO createVenv
 	) ELSE (
 		IF "%1"=="activate" (
 			shift
+            FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
+                SET $CURRENT_PY=%%a
+            )
 			GOTO activateVenv
 		) ELSE (
 			IF "%1"=="deactivate" (
 				shift
+                FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
+                    SET $CURRENT_PY=%%a
+                )
 				GOTO deactivateVenv
 			) ELSE (
 				IF "%1"=="list" (
+                    FOR /F  %%a in (%PYWIN_HOME%\lib\currentVersion.txt) do (
+                        SET $CURRENT_PY=%%a
+                    )
 					GOTO listVenv
 				) ELSE (
 					IF "%1"=="--help" (
@@ -107,7 +117,8 @@ dir %PYWIN_HOME%\virtualEnvironments\* /b /a:d
 GOTO end
 
 :help
-echo --venv manages virtual environments
+echo --venv 
+echo     Manages Python virtual environments
 echo     --venv create ^<name^>
 echo         Creates a virtual environment called ^<name^>
 echo     --venv activate ^<name^>

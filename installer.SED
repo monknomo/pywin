@@ -23,8 +23,8 @@ SourceFiles=SourceFiles
 [Strings]
 InstallPrompt=
 DisplayLicense=C:\github\pywin\LICENSE.txt
-FinishMessage=Pywin has been installed; open a command line and type "pywin --help" for more
-TargetName=C:\github\pywin\pywin_0.5.EXE
+FinishMessage=Pywin has been installed; open a new command line and type "pywin --help" for more
+TargetName=C:\github\pywin\pywin_0.6_32bit.EXE
 FriendlyName=pywin
 AppLaunched=cmd /c installer.bat 
 PostInstallCmd=<None>
@@ -42,11 +42,13 @@ FILE8="install.bat"
 FILE9="uninstall.bat"
 FILE10="use.bat"
 FILE11="versions.bat"
-FILE12="easy_install.bat"
-FILE13="pip.bat"
-FILE14="py.bat"
-FILE15="python.bat"
-FILE16="pythonw.bat"
+FILE12="installed.bat"
+FILE13="venv.bat"
+FILE14="easy_install.bat"
+FILE15="pip.bat"
+FILE16="py.bat"
+FILE17="python.bat"
+FILE18="pythonw.bat"
 [SourceFiles]
 SourceFiles0=C:\github\pywin\
 SourceFiles1=C:\github\pywin\bin\
@@ -69,9 +71,11 @@ SourceFiles4=C:\github\pywin\shims\
 %FILE9%=
 %FILE10%=
 %FILE11%=
-[SourceFiles4]
 %FILE12%=
 %FILE13%=
+[SourceFiles4]
 %FILE14%=
 %FILE15%=
 %FILE16%=
+%FILE17%=
+%FILE18%=
